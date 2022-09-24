@@ -9,6 +9,6 @@ elif [ $1 == '-t' ] ;  then
         ssh  -p 13778 zhangzs@cloudvm.china-vo.org
 elif [ $1 == '-f' ] ; then
         echo "copying $2 from remote server..."
-        scp -P 13778 zhangzs@cloudvm.china-vo.org:/home/zhangzs/Documents/$2 ./
+        scp wei@10.0.0.120:/home/wei/Projects/GPU_Projects/serendip6_inspection/$2 ./
 fi
 
