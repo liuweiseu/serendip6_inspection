@@ -6,8 +6,8 @@ fs = 1000;                      % the sampling freq is 1024MHz
 N_fft= 65536;                   % FFT point is 32768
 start_ch = 27392;               % start channel    
 %start_ch =4608;
-N_channels = 256;           % the number of output channels is 256
-f_valid = fs/N_fft*N_channels;    % convert the channels to frequency
+N_channels = 256;               % the number of output channels is 256
+f_valid = fs/N_fft*N_channels;  % convert the channels to frequency
 TAPS = 8;
 %--------------------Select data file-------------------------%
 files = dir('datacutter');
