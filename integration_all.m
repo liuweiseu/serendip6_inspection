@@ -12,7 +12,10 @@ TAPS = 8;
 %---------------------Set data path---------------------------%
 data_path='data/20230511/last_target/';
 %--------------------Select data file-------------------------%
-files = dir(data_path);
+
+datadir='data/20230420/target15/'
+files = dir(datadir);
+
 %-------------------------------------------------------------%
 x = f_valid/N_channels*(0:(N_channels - 1));        % cal the xlabel
 start_freq = start_ch/N_fft*fs + 1000;
@@ -20,7 +23,9 @@ x = x + start_freq;
 %-------------------------------------------------------------%
 for fn=1:38
     filename = files(fn+2).name;
-    filename = [data_path, filename];
+
+    filename = [datadir, filename];
+
     disp(filename);
     fp = fopen(filename,'r');    
     data = fread(fp, N_channels*2*TAPS,'int8');
@@ -53,5 +58,7 @@ for fn=1:38
     title(p_title);
     xlabel('Freq/MHz');
 end
-sgt = sgtitle('Hydrogen Line from FAST(20230511-Target 15)','Color','black');
+
+sgt = sgtitle('Hydrogen Line from FAST(20230420-Target15)','Color','black');
+
 sgt.FontSize = 20;
