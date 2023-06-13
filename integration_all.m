@@ -9,16 +9,18 @@ start_ch = 27392;               % start channel
 N_channels = 256;               % the number of output channels is 256
 f_valid = fs/N_fft*N_channels;  % convert the channels to frequency
 TAPS = 8;
+%---------------------Set data path---------------------------%
+data_path='data/20230511/last_target/';
 %--------------------Select data file-------------------------%
-files = dir('datacutter');
+files = dir(data_path);
 %-------------------------------------------------------------%
 x = f_valid/N_channels*(0:(N_channels - 1));        % cal the xlabel
 start_freq = start_ch/N_fft*fs + 1000;
 x = x + start_freq;
 %-------------------------------------------------------------%
 for fn=1:38
-    filename = files(fn+5).name;
-    filename = ['datacutter/', filename];
+    filename = files(fn+2).name;
+    filename = [data_path, filename];
     disp(filename);
     fp = fopen(filename,'r');    
     data = fread(fp, N_channels*2*TAPS,'int8');
@@ -46,10 +48,10 @@ for fn=1:38
     fclose(fp);
     subplot(4,10,fn);
     fsplit = strsplit(filename,'_');
-    p_title = [fsplit{2},'-Pol',num2str(fsplit{6})];
+    p_title = [fsplit{3},'-Pol',num2str(fsplit{7})];
     plot(x, spec);
     title(p_title);
     xlabel('Freq/MHz');
 end
-sgt = sgtitle('Hydrogen Line from FAST','Color','black');
+sgt = sgtitle('Hydrogen Line from FAST(20230511-Target 15)','Color','black');
 sgt.FontSize = 20;
